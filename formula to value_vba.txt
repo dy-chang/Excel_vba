@@ -1,0 +1,11 @@
+# Change formula to Value in all worksheets within one workbook file
+
+
+Sub SaveAsValue()
+    Dim wksht As Worksheet
+    For Each wksht In ThisWorkbook.Worksheets
+        wksht.Cells.Copy
+        wksht.Cells.PasteSpecial xlPasteValues
+    Next
+    Application.CutCopyMode = False
+End Sub

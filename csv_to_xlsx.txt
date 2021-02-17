@@ -1,0 +1,24 @@
+# Convert CSV to XlS within a certain folder
+
+
+Sub CSVtoXls()
+
+
+ Dim CSVfolder As String
+ Dim XlsFolder As String
+ Dim fname As String
+ Dim wBook As Workbook
+ 
+ CSVfolder = "C:\csvfolder\"
+ XlsFolder = "C:\xlsFolder\"
+ 
+ fname = Dir(CSVfolder & "*.csv")
+ 
+ Do While fname <> ""
+    Set wBook = Workbooks.Open(CSVfolder & fname, Format:=6, Delimiter:=",")
+    wBook.SaveAs XlsFolder & Replace(fname, ".csv", ""), ThisWorkbook.FileFormat
+    wBook.Close False
+ fname = Dir
+ Loop
+ 
+End Sub

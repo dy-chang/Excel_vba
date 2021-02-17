@@ -1,0 +1,28 @@
+# Copy all sheets within a certain area from another sheet
+
+Sub Macro()
+Dim v(1 To 108) As Variant
+Dim strPath As String
+Dim i As Integer
+
+Application.ScreenUpdating = 0
+strPath = ThisWorkbook.Path
+Workbooks.Open strPath & "\Back_values_00.xlsx"
+For i = 1 To Sheets.Count
+v(i) = Sheets(i).Range("MZ368:NA380")
+Next i
+Application.DisplayAlerts = 0
+With ActiveWorkbook
+.Saved = False: .Close
+End With
+For i = 1 To Sheets.Count
+Sheets(i).Range("MZ368:NA380") = v(i)
+Next i
+Application.ScreenUpdating = 1
+MsgBox "Complete copy all cells.", 64
+End Sub
+
+
+
+
+
